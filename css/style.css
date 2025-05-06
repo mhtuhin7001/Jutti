@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+	--primary: "Poppins", sans-serif;
+	--bangla: "Anek Bangla", sans-serif;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+ul {
+	list-style: none;
+	padding: 0;
+}
+header .top-stript {
+	background-color: rgba(95, 169, 8, 1);
+}
+header .top-stript ul li {
+	font-family: var(--bangla);
+	font-size: 0.85rem;
+	color: #ffff;
+	border-left: 1px solid rgba(0, 0, 0, 0.105);
+}
+header .top-stript ul li:first-child {
+	border: none;
+}
+header .full-logo img {
+	height: 80px;
+}
+nav {
+	background-color: #fff;
+}
+nav.sticky-top {
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+nav ul.navbar-nav li a {
+	font-family: var(--bangla);
+	font-size: 0.9rem;
+	color: #000;
+}
+nav ul.navbar-nav li a:hover,
+nav ul.navbar-nav li a:focus,
+nav ul.navbar-nav li a:hover::after,
+nav ul.navbar-nav li a:focus::after {
+	color: rgb(9, 114, 47);
+}
+nav .navbar-toggler:focus {
+	box-shadow: none;
+}
+nav ul li.dropdown .nav-link::after {
+	content: "\f078";
+	font-family: "Font Awesome 6 Free";
+	font-weight: 900;
+	color: #000;
+	margin-left: 3px;
+}
+nav ul li.dropdown a:active {
+	background-color: #fff;
+}
+nav ul li ul.dropdown-menu {
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+nav ul li.dropend ul.dropdown-menu {
+	top: 0;
+	left: 100%;
+}
+nav ul li.dropend a.dropdown-item::after {
+	content: "\f054";
+	font-family: "Font Awesome 6 Free";
+	font-weight: 900;
+	color: #000;
+	margin-left: 3px;
+}
+nav ul li.dropend ul li a::after {
+	display: none;
+}

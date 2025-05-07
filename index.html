@@ -7,6 +7,8 @@
 		<link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
 		<!-- Font Awesome Style -->
 		<link rel="stylesheet" href="css/all.min.css" />
+		<!-- Swiper Style -->
+		<link rel="stylesheet" href="css/swiper-bundle.min.css" />
 		<!-- Bootstrap Style -->
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<!-- Main Style -->
@@ -28,7 +30,11 @@
 				</div>
 			</div>
 			<div class="full-logo text-center pt-2 pb-4">
-				<img src="images/logo-full.png" alt="Brand Logo" />
+				<img
+					src="images/logo-full.png"
+					alt="Brand Logo"
+					loading="lazy"
+				/>
 			</div>
 		</header>
 		<!-- Main Menu -->
@@ -39,6 +45,7 @@
 						src="images/logo.png"
 						class="img-fluid d-lg-none"
 						alt="Brand Logo"
+						loading="lazy"
 					/>
 				</a>
 				<button
@@ -345,6 +352,98 @@
 				</div>
 			</div>
 		</nav>
+
+		<!-- Hero -->
+		<section id="home-hero">
+			<div class="container">
+				<div class="swiper hero-slide">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img
+								src="images/hero-slide-1.jpeg"
+								class="w-100 h-100 object-fit-cover"
+								alt="Hero Slide Image"
+								loading="lazy"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								src="images/hero-slide-2.jpeg"
+								class="w-100 h-100 object-fit-cover"
+								alt="Hero Slide Image"
+								loading="lazy"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								src="images/hero-slide-3.jpeg"
+								class="w-100 h-100 object-fit-cover"
+								alt="Hero Slide Image"
+								loading="lazy"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								src="images/hero-slide-4.jpeg"
+								class="w-100 h-100 object-fit-cover"
+								alt="Hero Slide Image"
+								loading="lazy"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								src="images/hero-slide-5.jpeg"
+								class="w-100 h-100 object-fit-cover"
+								alt="Hero Slide Image"
+								loading="lazy"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								src="images/hero-slide-6.jpeg"
+								class="w-100 h-100 object-fit-cover"
+								alt="Hero Slide Image"
+								loading="lazy"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								src="images/hero-slide-7.jpeg"
+								class="w-100 h-100 object-fit-cover"
+								alt="Hero Slide Image"
+								loading="lazy"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								src="images/hero-slide-8.jpeg"
+								class="w-100 h-100 object-fit-cover"
+								alt="Hero Slide Image"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+					<div class="swiper-button-next ps-1 rounded-circle"></div>
+					<div class="swiper-button-prev rounded-circle"></div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<div
+					class="marquee-container overflow-hidden position-relative my-3"
+				>
+					<p class="position-relative d-inline-block py-2 px-3 z-2">
+						সর্বশেষ নোটিশ
+					</p>
+					<div
+						class="marquee-text position-absolute d-inline-block top-50 translate-middle-y z-1"
+					>
+						<a href="" class="ms-4"
+							>**জন উন্নয়ন টেকনিক্যাল ট্রেনিং ইন্সটিটিউট এর পক্ষ
+							থেকে সবাইকে শুভেচ্ছা**</a
+						>
+					</div>
+				</div>
+			</div>
+		</section>
 
 		<p class="container">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
@@ -696,9 +795,79 @@
 
 		<!-- JQuery Script -->
 		<script src="js/jquery-3.7.1.min.js"></script>
+		<!-- Swiper Script -->
+		<script src="js/swiper-bundle.min.js"></script>
 		<!-- Bootstrap Script -->
 		<script src="js/bootstrap.bundle.min.js"></script>
 		<!-- JQuery Script -->
 		<script src="js/script.js"></script>
+
+		<script>
+			// Hero Slider Initialization
+			$(document).ready(function () {
+				var swiper = new Swiper(".hero-slide", {
+					loop: true,
+					grabCursor: true,
+					autoplay: {
+						delay: 2500,
+						disableOnInteraction: false,
+						pauseOnMouseEnter: true,
+					},
+					navigation: {
+						nextEl: ".swiper-button-next",
+						prevEl: ".swiper-button-prev",
+					},
+					pagination: {
+						el: ".swiper-pagination",
+						clickable: true,
+					},
+				});
+			});
+
+			// Marquee Text Effect
+			$(document).ready(function () {
+				const $container = $(".marquee-container");
+				const $text = $(".marquee-text");
+				let speed = 100;
+				let animation;
+				function repeatUntilFull() {
+					const containerWidth = $container.width();
+					let totalWidth = $text.width();
+					while (totalWidth < containerWidth * 2) {
+						$text.append($text.html());
+						totalWidth = $text.width();
+					}
+				}
+				function startMarquee(startFrom) {
+					const containerWidth = $container.width();
+					const textWidth = $text.width();
+					const distance = textWidth + containerWidth;
+					const duration = (distance / speed) * 1000;
+					const startPos =
+						startFrom !== undefined ? startFrom : containerWidth;
+					$text.css({ left: startPos });
+					animation = $text.animate(
+						{ left: -textWidth },
+						{
+							duration: duration,
+							easing: "linear",
+							complete: function () {
+								startMarquee();
+							},
+						}
+					);
+				}
+				repeatUntilFull();
+				startMarquee();
+				$container.on("mouseenter", function () {
+					$text.stop();
+				});
+				$container.on("mouseleave", function () {
+					const currentLeft = parseInt($text.css("left"));
+					$text.stop();
+					startMarquee(currentLeft);
+				});
+			});
+		</script>
 	</body>
 </html>

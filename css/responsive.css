@@ -11,9 +11,6 @@
 }
 
 @media (max-width: 992px) {
-	nav {
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-	}
 	nav .offcanvas-body {
 		padding: 0;
 	}
@@ -47,5 +44,17 @@
 	}
 	nav ul li.dropend a.dropdown-item::after {
 		content: "\f078";
+	}
+}
+
+@media (max-width: 375px) {
+	#home-hero .swiper .swiper-button-next,
+	#home-hero .swiper .swiper-button-prev {
+		width: 36px;
+		height: 36px;
+	}
+	#home-hero .swiper .swiper-button-next::after,
+	#home-hero .swiper .swiper-button-prev::after {
+		font-size: 1rem;
 	}
 }

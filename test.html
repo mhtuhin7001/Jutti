@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.marquee-container {
+				width: 100%;
+				overflow: hidden;
+				position: relative;
+				white-space: nowrap;
+				background: #f9f9f9;
+				border: 1px solid #ccc;
+				padding: 10px 0;
+			}
+
+			.marquee-text {
+				display: inline-block;
+				white-space: nowrap;
+				position: absolute;
+			}
+			.marquee-text a {
+				margin-right: 50px;
+				text-decoration: none;
+				color: #333;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="marquee-container">
+			<div class="marquee-text">
+				<a href="#">Link 1</a>
+				<a href="#">Link 2</a>
+				<a href="#">Link 3</a>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				const $container = $(".marquee-container");
+				const $text = $(".marquee-text");
+				let speed = 100; // pixels per second
+				let animation;
+				function repeatUntilFull() {
+					const containerWidth = $container.width();
+					let totalWidth = $text.width();
+					while (totalWidth < containerWidth * 2) {
+						$text.append($text.html());
+						totalWidth = $text.width();
+					}
+				}
+				function startMarquee(startFrom) {
+					const containerWidth = $container.width();
+					const textWidth = $text.width();
+					const distance = textWidth + containerWidth;
+					const duration = (distance / speed) * 1000;
+					const startPos =
+						startFrom !== undefined ? startFrom : containerWidth;
+					$text.css({ left: startPos });
+					animation = $text.animate(
+						{ left: -textWidth },
+						{
+							duration: duration,
+							easing: "linear",
+							complete: function () {
+								startMarquee();
+							},
+						}
+					);
+				}
+				repeatUntilFull();
+				startMarquee();
+				$container.on("mouseenter", function () {
+					$text.stop();
+				});
+				$container.on("mouseleave", function () {
+					const currentLeft = parseInt($text.css("left"));
+					$text.stop();
+					startMarquee(currentLeft);
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,23 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
-	--primary: "Poppins", sans-serif;
+	--english: "Poppins", sans-serif;
 	--bangla: "Anek Bangla", sans-serif;
+	--primary: rgb(15, 138, 0);
+	--secondary: rgb(9, 114, 47);
+	--accent: rgba(95, 169, 8, 1);
+	--text: #000;
+	--textWhite: #fff;
 }
 * {
 	margin: 0;
 	padding: 0;
+}
+a {
+	text-decoration: none;
 }
 ul {
 	list-style: none;
 	padding: 0;
 }
 header .top-stript {
-	background-color: rgba(95, 169, 8, 1);
+	background-color: var(--accent);
 }
 header .top-stript ul li {
 	font-family: var(--bangla);
 	font-size: 0.85rem;
-	color: #ffff;
+	color: var(--textWhite);
 	border-left: 1px solid rgba(0, 0, 0, 0.105);
 }
 header .top-stript ul li:first-child {
@@ -27,10 +35,23 @@ header .full-logo img {
 	height: 80px;
 }
 nav {
-	background-color: #fff;
+	background-color: var(--textWhite);
 }
 nav.sticky-top {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	animation: 1.2s ease-in-out 0s normal none 1 running headerdown;
+}
+@keyframes headerdown {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -100%, 0);
+		transform: translate3d(0, -100%, 0);
+	}
+	to {
+		opacity: 1;
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+	}
 }
 nav ul.navbar-nav li a {
 	font-family: var(--bangla);
@@ -41,7 +62,7 @@ nav ul.navbar-nav li a:hover,
 nav ul.navbar-nav li a:focus,
 nav ul.navbar-nav li a:hover::after,
 nav ul.navbar-nav li a:focus::after {
-	color: rgb(9, 114, 47);
+	color: var(--primary);
 }
 nav .navbar-toggler:focus {
 	box-shadow: none;
@@ -50,11 +71,11 @@ nav ul li.dropdown .nav-link::after {
 	content: "\f078";
 	font-family: "Font Awesome 6 Free";
 	font-weight: 900;
-	color: #000;
+	color: var(--text);
 	margin-left: 3px;
 }
 nav ul li.dropdown a:active {
-	background-color: #fff;
+	background-color: var(--textWhite);
 }
 nav ul li ul.dropdown-menu {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -67,9 +88,51 @@ nav ul li.dropend a.dropdown-item::after {
 	content: "\f054";
 	font-family: "Font Awesome 6 Free";
 	font-weight: 900;
-	color: #000;
+	color: var(--text);
 	margin-left: 3px;
 }
 nav ul li.dropend ul li a::after {
 	display: none;
+}
+/* Home Hero */
+#home-hero .hero-slide {
+	height: 90vh;
+}
+#home-hero .swiper .swiper-button-next,
+#home-hero .swiper .swiper-button-prev {
+	width: 40px;
+	height: 40px;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+#home-hero .swiper .swiper-button-next::after,
+#home-hero .swiper .swiper-button-prev::after {
+	font-size: 1.15rem;
+	font-weight: 700;
+	color: var(--textWhite);
+}
+#home-hero .swiper .swiper-pagination-bullet {
+	width: 10px;
+	height: 10px;
+	background: transparent;
+	border: 2px solid var(--textWhite);
+}
+#home-hero .swiper .swiper-pagination-bullet-active {
+	background-color: var(--textWhite);
+}
+#home-hero .marquee-container {
+	height: 42px;
+	font-family: var(--bangla);
+	font-size: 0.9rem;
+	background-color: var(--primary);
+	border: 2px solid #055500;
+}
+#home-hero .marquee-container p {
+	color: var(--textWhite);
+	background-color: #055500;
+}
+#home-hero .marquee-container .marquee-text {
+	white-space: nowrap;
+}
+#home-hero .marquee-container a {
+	color: var(--textWhite);
 }

@@ -45,6 +45,19 @@
 	nav ul li.dropend a.dropdown-item::after {
 		content: "\f078";
 	}
+	#contents .row .col-lg-3:first-child {
+		order: 2;
+	}
+	#contents .row .col-lg-3:last-child {
+		order: 3;
+	}
+}
+
+@media (max-width: 768px) {
+	footer .copyright {
+		flex-direction: column;
+		gap: 5px;
+	}
 }
 
 @media (max-width: 375px) {
